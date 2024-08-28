@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   } elseif (preg_match('/[^a-zA-Z0-9]/', $matricula)) {
       // Validar que la matrícula no contenga caracteres especiales
       $error = "La matrícula no debe contener caracteres especiales.";
-  } elseif (preg_match('/[^a-zA-Z0-9]/', $equipo)) {
+  } elseif (preg_match('/[^a-zA-Z0-9-]/', $equipo)) {
       // Validar que el equipo no contenga caracteres especiales
       $error = "El equipo no debe contener caracteres especiales.";
   } else {
@@ -203,42 +203,42 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <h2>Registrar Avión</h2>
     <form method="POST">
         <div class="form-group">
-            <input type="date" name="fecha" required>
+            <input type="date" name="fecha" value="<?= isset($_POST['fecha']) ? $_POST['fecha'] : '' ?>" required>
             <label>Fecha</label>
         </div>
         <div class="form-group">
-            <input type="time" name="hora" required>
+            <input type="time" name="hora" value="<?= isset($_POST['hora']) ? $_POST['hora'] : '' ?>" required>
             <label>Hora</label>
         </div>
         <div class="form-group">
-            <input type="number" name="num_pasajeros" placeholder=" " required>
+            <input type="number" name="num_pasajeros" value="<?= isset($_POST['num_pasajeros']) ? $_POST['num_pasajeros'] : '' ?>" placeholder=" " required>
             <label>Número de Pasajeros</label>
         </div>
         <div class="form-group">
-            <input type="text" name="matricula" placeholder=" " required>
+            <input type="text" name="matricula" value="<?= isset($_POST['matricula']) ? $_POST['matricula'] : '' ?>" placeholder=" " required>
             <label>Matrícula</label>
         </div>
         <div class="form-group">
-            <input type="text" name="equipo" placeholder=" " required>
+            <input type="text" name="equipo" value="<?= isset($_POST['equipo']) ? $_POST['equipo'] : '' ?>" placeholder=" " required>
             <label>Equipo</label>
         </div>
         <div class="form-row">
             <div class="form-group">
-                <input style="width: 300px;" type="text" name="comandante" placeholder=" " required>
+                <input style="width: 300px;" type="text" name="comandante" value="<?= isset($_POST['comandante']) ? $_POST['comandante'] : '' ?>" placeholder=" " required>
                 <label>Comandante</label>
             </div>
             <div class="form-group">
-                <input style="width: 300px;" type="text" name="licencia_comandante" placeholder=" " required>
+                <input style="width: 300px;" type="text" name="licencia_comandante" value="<?= isset($_POST['licencia_comandante']) ? $_POST['licencia_comandante'] : '' ?>" placeholder=" " required>
                 <label>Licencia Comandante</label>
             </div>
         </div>
         <div class="form-row">
             <div class="form-group">
-                <input style="width: 300px;" type="text" name="sub_comandante" placeholder=" ">
+                <input style="width: 300px;" type="text" name="sub_comandante" value="<?= isset($_POST['sub_comandante']) ? $_POST['sub_comandante'] : '' ?>" placeholder=" ">
                 <label>Sub Comandante</label>
             </div>
             <div class="form-group">
-                <input style="width: 300px;" type="text" name="licencia_sub_comandante" placeholder=" ">
+                <input style="width: 300px;" type="text" name="licencia_sub_comandante" value="<?= isset($_POST['licencia_sub_comandante']) ? $_POST['licencia_sub_comandante'] : '' ?>" placeholder=" ">
                 <label>Licencia Sub Comandante</label>
             </div>
         </div>
