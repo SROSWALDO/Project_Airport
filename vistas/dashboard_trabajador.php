@@ -8,23 +8,34 @@ if (!isset($_SESSION['usuario']) || $_SESSION['rol'] != 'trabajador') {
 include '../includes/funciones.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $datos = [
-        'fecha' => $_POST['fecha'],
-        'hora' => $_POST['hora'],
-        'matricula' => $_POST['matricula'],
-        'equipo' => $_POST['equipo'],
-        'comandante' => $_POST['comandante'],
-        'licencia_comandante' => $_POST['licencia_comandante'],
-        'sub_comandante' => $_POST['sub_comandante'],
-        'licencia_sub_comandante' => $_POST['licencia_sub_comandante'],
-        'num_pasajeros' => $_POST['num_pasajeros'],
-    ];
-    if (registrarAvion($datos)) {
-        $mensaje = "Avión registrado con éxito";
-    } else {
-        $error = "Error al registrar el avión";
-    }
+  $comandante = $_POST['comandante'];
+  $sub_comandante = $_POST['sub_comandante'];
+
+  // Validar que solo se ingresen letras en comandante y sub_comandante
+  if (!ctype_alpha(str_replace(' ', '', $comandante))) {
+      $error = "El nombre del comandante solo debe contener letras.";
+  } elseif (!ctype_alpha(str_replace(' ', '', $sub_comandante))) {
+      $error = "El nombre del subcomandante solo debe contener letras.";
+  } else {
+      $datos = [
+          'fecha' => $_POST['fecha'],
+          'hora' => $_POST['hora'],
+          'matricula' => $_POST['matricula'],
+          'equipo' => $_POST['equipo'],
+          'comandante' => $comandante,
+          'licencia_comandante' => $_POST['licencia_comandante'],
+          'sub_comandante' => $sub_comandante,
+          'licencia_sub_comandante' => $_POST['licencia_sub_comandante'],
+          'num_pasajeros' => $_POST['num_pasajeros'],
+      ];
+      if (registrarAvion($datos)) {
+          $mensaje = "Avión registrado con éxito";
+      } else {
+          $error = "Error al registrar el avión";
+      }
+  }
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -179,6 +190,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </div>
 
 <div class="container">
+<?php if (isset($mensaje)) { echo "<p class='message success'>$mensaje</p>"; } ?>
+<?php if (isset($error)) { echo "<p class='message error'>$error</p>"; } ?>
     <h2>Registrar Avión</h2>
     <form method="POST">
         <div class="form-group">
@@ -223,8 +236,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </div>
         <button class="btn" type="submit">Registrar</button>
     </form>
-    <?php if (isset($mensaje)) { echo "<p class='message success'>$mensaje</p>"; } ?>
-    <?php if (isset($error)) { echo "<p class='message error'>$error</p>"; } ?>
+    
 </div>
 
 </body>
