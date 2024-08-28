@@ -10,18 +10,26 @@ include '../includes/funciones.php';
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $comandante = $_POST['comandante'];
   $sub_comandante = $_POST['sub_comandante'];
+  $matricula = $_POST['matricula'];
+  $equipo = $_POST['equipo'];
 
   // Validar que solo se ingresen letras en comandante y sub_comandante
   if (!ctype_alpha(str_replace(' ', '', $comandante))) {
       $error = "El nombre del comandante solo debe contener letras.";
   } elseif (!ctype_alpha(str_replace(' ', '', $sub_comandante))) {
       $error = "El nombre del subcomandante solo debe contener letras.";
+  } elseif (preg_match('/[^a-zA-Z0-9]/', $matricula)) {
+      // Validar que la matrícula no contenga caracteres especiales
+      $error = "La matrícula no debe contener caracteres especiales.";
+  } elseif (preg_match('/[^a-zA-Z0-9]/', $equipo)) {
+      // Validar que el equipo no contenga caracteres especiales
+      $error = "El equipo no debe contener caracteres especiales.";
   } else {
       $datos = [
           'fecha' => $_POST['fecha'],
           'hora' => $_POST['hora'],
-          'matricula' => $_POST['matricula'],
-          'equipo' => $_POST['equipo'],
+          'matricula' => $matricula,
+          'equipo' => $equipo,
           'comandante' => $comandante,
           'licencia_comandante' => $_POST['licencia_comandante'],
           'sub_comandante' => $sub_comandante,
