@@ -48,6 +48,16 @@ if (isset($_POST['registrar_trabajador'])) {
   <title>Comandante</title>
   <link rel="stylesheet" href="../css/style.css">
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+  <style>
+    .mensaje{
+    padding: 10px;
+    margin: 15px 0;
+    background-color: #28a745; 
+    color: #fff; 
+    border-radius: 5px;
+    text-align: center;
+    }
+  </style>
 </head>
 <body>
   <div class="container">
