@@ -171,7 +171,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <img src="../images/omanav.jpg" alt="">
        
     </div>
-    <a href="registros_aviones.php" class="botones-nav">Crear Registro</a>
+    <a href="registros_aviones.php" class="botones-nav">Ver registros</a>
     <div class="logout">
         <a style="text-decoration:none; color:white; "  href="../logout.php">Cerrar Sesión</a>
         <img src="../images/exit.svg" alt="">
