@@ -33,6 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <input class="text-gray-800 bg-white border border-gray-300 w-[350px] text-sm px-4 py-2.5 rounded-md outline-blue-500" type="password" name="contrasena" placeholder="Password" required>
     <div class="forgot-password">
       <a href="#"></a>
+      <h2>Soy fea</h2>
     </div>
     <button type="submit" class=" bg-blue-950 text-white w-[230px] p-2 rounded mt-5 hover:bg-blue-900 " >Iniciar</button>
     
